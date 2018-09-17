@@ -5,10 +5,7 @@
 </div>
 <br>
 <form class="col-md-4 mx-auto pt-5 pb-5 logIn-form" #studentForm="ngForm">
-    <div *ngIf="guardAdminValue" class="alert alert-danger  alert-dismissible in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>Caution!</strong> You are not designated to use the section.
-    </div>
+
    <div *ngIf="authErrorFlag" class="text-center">
     <strong  class="text-danger">{{inValidCredentials}}</strong>
     <br>
