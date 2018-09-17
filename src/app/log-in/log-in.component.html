@@ -1,0 +1,35 @@
+
+<div class="container">
+  <h1 class="text-dark text-center mt-2" style="font-size:2em;">Egovernance Portal</h1>
+  <hr>
+</div>
+<br>
+<form class="col-md-4 mx-auto pt-5 pb-5 logIn-form" #studentForm="ngForm">
+    <div *ngIf="guardAdminValue" class="alert alert-danger  alert-dismissible in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Caution!</strong> You are not designated to use the section.
+    </div>
+   <div *ngIf="authErrorFlag" class="text-center">
+    <strong  class="text-danger">{{inValidCredentials}}</strong>
+    <br>
+    <br>
+  </div>  
+  <label>
+    E-mail
+  </label>
+  <div class="form-group">
+    <input class="form-control" required #email="ngModel" [class.is-invalid]="authErrorFlag || email.touched && email.invalid" type="email" name="email" placeholder="Email" ngModel> 
+    <small *ngIf="email.touched && email.invalid" class="text-danger"><sup class="text-danger">*</sup>Pease fill in the email</small>
+  </div>
+
+  <label>
+    Password
+  </label>
+  <div class="form-group">
+    <input class="form-control" required #password="ngModel" [class.is-invalid]="authErrorFlag || password.touched && password.invalid"  type="password" name="password" placeholder="Password" ngModel> 
+    <small *ngIf="password.touched && password.invalid" class="text-danger"><sup class="text-danger">*</sup>Please fill in the password</small>
+  </div>
+  <span class="login" style="cursor:pointer;" [routerLink]="['']">New Here?</span>
+  <br><br>
+  <button class="btn btn-primary btn-block p-1" [style.cursor]="email.invalid || password.invalid ? 'not-allowed' : 'pointer' " [disabled]="email.invalid || password.invalid"  style="border-radius:50px;" (click)="sendData(studentForm)">Log In</button>
+</form>

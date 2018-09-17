@@ -1,0 +1,51 @@
+<div class="col-md-12">
+  <ngx-spinner
+  bdColor="rgb(255, 255, 255)"
+  size="medium"
+  color="#315ee2"
+  type="ball-clip-rotate">
+</ngx-spinner>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h5 *ngIf="isEmptyApplication">There are no applications submitted by students for now!!!!</h5>
+    </div>
+    <div class="col-md-4" *ngFor="let app of matchedApplication;index as i">
+        <div class="card mb-4">
+            <div class="card-body">
+              <h6 class="card-title">Application by:&nbsp;{{app.name}}</h6>
+              <h6 class="card-title">Email Id:&nbsp;{{app.email}}</h6>
+              <h6 class="card-title"  (mouseenter)="show(i)" (mouseleave)="hide(i)" style="cursor:pointer">
+                Status:&nbsp;{{app.status}}
+                  <span  class="float-right" (click)="editStatus(i)" [class.hidden]="isHidden[i]" ><i class="fa fa-pencil" aria-hidden="true"></i></span>  
+              </h6>
+              <div [class.hideStatus]="isHiddenStatus[i]">
+                <form #form="ngForm">
+                    <div class="form-group">
+                      <select class="form-control" [class.is-invalid]="status.invalid && status.touched" name="status" required #status="ngModel" ngModel>
+                        <option>Approved</option>
+                        <option>Rejected</option>
+                        <option>Processing</option>
+                      </select>
+                      <small class="text-danger" [class.d-none]="status.valid || status.untouched">Please choose a status</small>
+                    </div>
+                    <button class="btn btn-primary btn-block" (click)="update(form)">Update</button>
+                </form> 
+              </div>  
+              <h6 class="card-title">Subject:&nbsp;{{app.subject}}</h6>
+              <ng-template #elseBlock>
+                <a href={{app.Url}} target="_blank">
+                  Download attachments
+                </a>
+              </ng-template>  
+              <h6 *ngIf="isURLNull[i]; else elseBlock">No Attachments</h6>
+              <div class="card-text">
+                <p [innerHTML]="app.content"></p>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+

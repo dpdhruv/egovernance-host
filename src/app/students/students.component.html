@@ -1,0 +1,30 @@
+
+<div class="col-md-10 m-5 p-5 mx-auto jumbotron">
+  <div class="row">
+    <div class="col-md-5 col-sm-12 left">
+      <ul  style="list-style-type:none;display: flex;">
+        <li (click)="home()">Home</li>
+        <li (click)="navigateToProfile()">Profile</li>
+        <li (click)="navigateToLeaveApp()" [class.active]="activeLink">Leave Application</li>
+        <li (click)="logout()">Logout</li>
+      </ul>
+    </div>
+    <div class="col-md-5 col-sm-12 float-right">
+      <div class="row">
+        <div class="col-md-5 mx-auto"></div>
+        <div class="col-md-5">
+          <div class="media  p-3">
+              <img src="../../assets/avatar.png" alt="John Doe" class="mr-3 mt-0 rounded-circle" style="width:60px;">
+              <div class="media-body">
+                      <span class="font-weight-bold text-capitalize text-justify">Name:&nbsp;{{activeStudent.name}}</span><br>
+                      <span class="font-weight-bold text-justify">Role:&nbsp;{{activeStudent.role}}</span>        
+              </div>
+            </div>
+          </div>  
+      </div>
+    </div>  
+    </div>
+  </div>  
+<div class="col-md-10 col-sm-10 mx-auto">
+      <router-outlet></router-outlet>
+ </div> 

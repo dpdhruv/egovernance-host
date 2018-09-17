@@ -1,0 +1,51 @@
+<div class="container">
+  <h1 class="text-dark text-center mt-2" style="font-size:2em;">Egovernance Portal</h1>
+  <hr>
+</div>
+<br>
+<form class="col-md-4 mx-auto pt-5 pb-5 signUp-form" #studentForm="ngForm">
+  
+  <label>
+    Name
+  </label>
+  <div class="form-group">
+    <input class="form-control" required #name="ngModel" [class.is-invalid]="name.touched && name.invalid"  type="text" name="name" placeholder="Name" ngModel> 
+    <small *ngIf="name.touched && name.invalid" class="text-danger"><sup class="text-danger">*</sup>Please fill the name</small>
+  </div>
+
+  <label>
+    E-mail
+  </label>
+  <div class="form-group">
+    <input class="form-control" autocomplete=off required (keyup)="checkMail($event)" #email="ngModel" [class.is-invalid]="errorFlag || sameEmailErrorFlag || email.touched && email.invalid" type="email" name="email" placeholder="Email" ngModel> 
+    <small *ngIf="errorFlag || sameEmailErrorFlag" class="text-danger"> {{sameEmailError}}</small>
+    <small *ngIf="email.touched && email.invalid" class="text-danger"><sup class="text-danger">*</sup>Pease fill in the email</small>
+  </div>
+
+  <label>
+    Password
+  </label>
+  <div class="form-group">
+    <input class="form-control" required #password="ngModel" [class.is-invalid]="password.touched && password.invalid" type="password" name="password" placeholder="Password" ngModel> 
+    <small *ngIf="password.touched && password.invalid" class="text-danger"><sup class="text-danger">*</sup>Please fill in the password</small>
+  </div>
+  
+  <label>
+    Choose your role: &nbsp;
+  </label>
+  <div class="form-check-inline">
+    <input class="form-check-input" required #student="ngModel" ngModel type="radio" name="role" value="Student">
+    <label class="form-check-label">
+      Student
+    </label>
+  </div>
+  <div class="form-check-inline">
+      <input class="form-check-input" required ngModel #admin="ngModel" type="radio" name="role" value="Admin">
+      <label class="form-check-label">
+       Admin
+      </label>
+    </div><br><br>
+  <span class="login" style="cursor:pointer;"><a (click)="loginPageroute()">Already have an account?</a></span>  
+   <br><br>
+  <button class="btn btn-primary btn-block p-1" [style.cursor]="name.invalid || email.invalid || password.invalid || student.invalid || admin.invalid ? 'not-allowed' : 'pointer' " [disabled]="name.invalid || email.invalid || password.invalid || student.invalid || admin.invalid" style="border-radius:50px;" (click)="sendData(studentForm)">Sign-Up</button>
+</form>

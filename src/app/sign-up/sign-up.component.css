@@ -1,0 +1,13 @@
+input{
+    border-radius:50px;
+}
+
+.login:hover{
+    color: blue
+}
+
+.signUp-form{
+    border-radius: 25px;
+    background: white;
+    box-shadow: 1px 1px 14px 0px cadetblue;
+}

@@ -1,0 +1,11 @@
+.card{
+    z-index: 1000;
+}
+
+.fade:not(.show) {
+    opacity: 2 !important;
+}
+
+.modal{
+    background: rgb(73, 73, 73,0.8);
+}

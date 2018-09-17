@@ -1,0 +1,26 @@
+ul > li{
+    padding:6px;
+    font-weight: bold;
+    cursor: pointer; 
+}
+
+.user{
+ padding-left:220px;
+}
+li:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+  }
+  li:hover:after {
+    width: 100%;
+    background: blue;
+  }
+
+  .active{
+      color:blue !important;
+  }

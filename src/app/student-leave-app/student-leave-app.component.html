@@ -1,0 +1,101 @@
+<ngx-spinner
+  bdColor="rgb(255, 255, 255)"
+  size="medium"
+  color="#315ee2"
+  type="ball-clip-rotate">
+</ngx-spinner>
+<div class="card">
+  <div class="card-header bg-dark text-white font-weight-bold text-center">
+    Fill Form For Leave Application
+  </div>
+  <form #leaveform="ngForm" class="card-body">
+    <div class="col-md-11 mx-auto">
+      <div class="row">
+        <span class="pt-2 text-dark font-weight-bold">Subject:</span>
+        <span class="form-group col-md-5">
+          <input class="form-control" type="text" [class.is-invalid]="title.touched && title.invalid" name="title" #title="ngModel" required ngModel>
+        </span>
+        <span *ngIf="title.touched && title.invalid" class="text-danger">
+          <sup>*</sup>Please fill this field
+        </span>
+      </div>  
+    </div>
+    <div class="col-md-11 mx-auto">
+        <div class="row">
+          <span class="pt-2 text-dark font-weight-bold">Content:</span>
+          <span class="form-group col-md-5">
+           <textarea class="form-control" name="content" #content="ngModel" [class.is-invalid]="content.touched && content.invalid" required ngModel></textarea> 
+          </span>
+          <span *ngIf="content.touched && content.invalid" class="text-danger">
+            <sup>*</sup>Please fill this field
+          </span>
+        </div>  
+    </div>
+    <div class="col-md-11 mx-auto">
+      <div class="row">
+        <span class="form-group col-md-5">
+         <i class="fa fa-paperclip fa-2x" style="cursor: pointer;" (click)="trigger()">
+          <input type="file" (change)="fileSelected($event)" id="file">
+        </i>  
+
+         &nbsp;
+         <span *ngIf="truthValue">{{file.name}}</span>
+         &nbsp;  
+        <span *ngIf="truthValue">{{progress}}%</span>
+        </span>
+        &nbsp;
+        <span (click)="deleteFile()" style="cursor:pointer"  *ngIf="truthValue">
+            &nbsp;
+          <i class="fa fa-trash"  aria-hidden="true" style="color:red"></i>
+        </span>
+      </div>  
+    </div>
+    <div class="col-md-11 mx-auto">
+        <div class="row">
+            <button  class="btn btn-primary col-md-6" [disabled]="title.invalid || content.invalid" (click)="submitApplication(leaveform)">Submit</button>  
+        </div>  
+    </div>
+  </form> 
+</div>   
+
+<hr style="border-top-color:blue;">
+<h3 *ngIf="isListEmpty else elseBlock" class="text-center font-weight-bold">There are no applications to show!!!</h3>
+
+<ng-template #elseBlock>
+    <!--table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let list of newList">
+            <td>{{list.subject}}</td>
+            <td>{{list.content}}</td>
+            <td>
+              <span   style="font-size:100%;">{{list.status}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table -->
+      <div class="col-md-12">
+        <div class="row">
+          <div *ngFor="let list of newList;index as i" class="col-md-6">
+            <div class="card mb-5">
+              <div class="card-body">
+                <h6 class="card-title">Subject:&nbsp;{{list.subject}}</h6>
+                <h6 class="card-title">Status:&nbsp;{{list.status}}</h6>
+                <div class="card-text">
+                    <p [innerHTML]="list.content"></p>
+                </div>
+              </div>
+              <div card="card-footer">
+                <button class="btn btn-danger btn-block" (click)="deleteApplication(i)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</ng-template>

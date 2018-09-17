@@ -1,0 +1,29 @@
+<ngx-spinner
+  bdColor="rgb(255, 255, 255)"
+  size="medium"
+  color="#315ee2"
+  type="ball-clip-rotate">
+</ngx-spinner>
+<ng-template #elseBlock>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Counsellor Name</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let student of matchedStudentData">
+      <tr>
+        <td>{{student.name}}</td>
+        <td>{{student.email}}</td>
+        <td>
+          {{student.counsellor}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>  
+<div *ngIf="isEmpty else elseBlock" class="col-md-5 mx-auto">
+    <p class="text-grey text-center">No Student Assigned Yet</p>
+</div>

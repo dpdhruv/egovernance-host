@@ -1,0 +1,15 @@
+input{
+    border-radius: 50px;
+}
+
+.logIn-form{
+    border-radius: 25px;
+    background: white;
+    box-shadow: 1px 1px 14px 0px cadetblue;
+}
+
+.login:hover{
+    color: blue;
+    text-decoration: none;
+    border-bottom: none;    
+}

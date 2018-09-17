@@ -1,0 +1,45 @@
+<div class="col-md-12">
+    <div class="row">
+      <div class="col-md-2">
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter"   style="border-radius: 50px;box-shadow: 0px 0px 7px 0px black;"><i class="fa fa-plus" aria-hidden="true"></i></button>
+      </div>
+      <div *ngIf="isEmptyFeed" class="col-md-10 card">
+        <h6 class="card-title text-center p-4">No Post yet!!!</h6>
+      </div>
+    <div *ngIf="isFeed" class="col-md-10">  
+      <div *ngFor="let post of posts" class="col-md-10 card mb-5">
+           <div class="media  p-3">
+              <img src="../../assets/avatar.png" alt="John Doe" class="mr-3 mt-0 rounded-circle" style="width:60px;">
+              <div class="media-body">
+                      <span class="font-weight-bold text-capitalize text-justify">{{post.name}}</span><br>
+                      <span class="font-weight-light text-justify">{{post.date | date:'fullDate'}}</span>        
+              </div>
+            </div>
+            <hr>
+            <div [innerHTML]="post.content" class="pb-4">
+            </div>
+      </div>
+    </div>   
+  </div> 
+  
+  
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+         <form #post="ngForm">
+          <div class="form-group">
+            <textarea class="form-control" name="post" #post="ngModel"  required ngModel></textarea> 
+          </div>
+          <div *ngIf="post.touched && post.invalid">
+            <small class="text-danger"><sup>*</sup>Please fill the box</small>
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button id="close-button" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" [disabled]="post.invalid || post.untouched" (click)="submitPost(post)" class="btn btn-primary">Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
